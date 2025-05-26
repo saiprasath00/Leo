@@ -17,29 +17,93 @@
       font-family: "Poppins", Arial, sans-serif;
       background: linear-gradient(135deg, #f0f4f8 0%, #d9e2ec 100%);
       color: #1e293b;
+      scroll-behavior: smooth;
     }
-    /* Custom border style for headings */
     .fancy-border {
       border-image-slice: 1;
       border-width: 0 0 4px 0;
       border-style: solid;
       border-image-source: linear-gradient(to right, #4f46e5, #3b82f6);
     }
-    /* Smooth link underline on hover */
     a:hover {
       text-decoration: underline;
       text-underline-offset: 3px;
       transition: all 0.3s ease;
     }
-    /* Prevent line breaks in name */
     .no-wrap {
       white-space: nowrap;
+    }
+    /* Coursera text style for inline logo */
+    .coursera-logo-text {
+      font-family: Helvetica, Arial, sans-serif;
+      color: #0056D2;
+      font-weight: 800;
+      font-size: 1.5rem; /* approx 24px */
+      line-height: 1;
+      letter-spacing: -0.02em;
+      user-select: none;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    /* Great Learning logo inline style */
+    .great-learning-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      vertical-align: middle;
+      user-select: none;
+    }
+    .great-learning-logo img {
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+    }
+    .great-learning-logo-text {
+      color: #2a7bff;
+      font-weight: 600;
+      font-size: 1.125rem; /* 18px */
+      line-height: 1;
+      font-family: 'Poppins', Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+      margin: 0;
+    }
+    .great-learning-logo-text span {
+      line-height: 1;
+      margin: 0;
+      padding: 0;
+    }
+    /* Udemy logo inline style */
+    .udemy-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      vertical-align: middle;
+      user-select: none;
+      flex-shrink: 0;
+    }
+    .udemy-logo svg {
+      width: 24px;
+      height: 24px;
+      color: #7b3fe4; /* purple */
+      flex-shrink: 0;
+    }
+    .udemy-logo-text {
+      font-family: "Arial Black", Arial, sans-serif;
+      font-weight: 900;
+      font-size: 1.5rem; /* 24px */
+      color: black;
+      line-height: 1;
+      user-select: none;
+      display: inline-block;
+      vertical-align: middle;
     }
   </style>
 </head>
 <body>
   <div class="min-h-screen flex flex-col max-w-4xl mx-auto px-6 py-12">
-    <header class="mb-16 text-center">
+    <header class="mb-8 text-center">
       <h1 class="text-4xl font-extrabold tracking-tight text-indigo-700 drop-shadow-md no-wrap">
         D P Sai Prasath
       </h1>
@@ -48,8 +112,18 @@
       </p>
     </header>
 
+    <nav class="mb-12 flex flex-wrap justify-center gap-4">
+      <a href="#experience" class="px-5 py-2 rounded-full bg-indigo-600 text-white font-semibold shadow hover:bg-indigo-700 transition focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Experience</a>
+      <a href="#skills" class="px-5 py-2 rounded-full bg-indigo-600 text-white font-semibold shadow hover:bg-indigo-700 transition focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Skills</a>
+      <a href="#education" class="px-5 py-2 rounded-full bg-indigo-600 text-white font-semibold shadow hover:bg-indigo-700 transition focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Education</a>
+      <a href="#interests" class="px-5 py-2 rounded-full bg-indigo-600 text-white font-semibold shadow hover:bg-indigo-700 transition focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Interests</a>
+      <a href="#contact" class="px-5 py-2 rounded-full bg-indigo-600 text-white font-semibold shadow hover:bg-indigo-700 transition focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Contact</a>
+      <a href="#courses" class="px-5 py-2 rounded-full bg-indigo-600 text-white font-semibold shadow hover:bg-indigo-700 transition focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Courses</a>
+      <a href="https://drive.google.com/file/d/1kJ63iiaoXCCtYA1fJ70gKQFBYk93L5lY/view?usp=drivesdk" target="_blank" rel="noopener noreferrer" class="px-5 py-2 rounded-full bg-indigo-700 text-white font-semibold shadow hover:bg-indigo-800 transition focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" aria-label="Download Resume PDF">Download</a>
+    </nav>
+
     <main class="space-y-20">
-      <section>
+      <section id="experience" tabindex="-1">
         <h2 class="text-3xl font-bold fancy-border pb-2 mb-8 max-w-max mx-auto">
           Experience
         </h2>
@@ -71,7 +145,7 @@
         </div>
       </section>
 
-      <section>
+      <section id="education" tabindex="-1">
         <h2 class="text-3xl font-bold fancy-border pb-2 mb-8 max-w-max mx-auto">
           Education
         </h2>
@@ -92,87 +166,84 @@
         </div>
       </section>
 
-      <section>
+      <section id="courses" tabindex="-1">
         <h2 class="text-3xl font-bold fancy-border pb-2 mb-8 max-w-max mx-auto">
           Courses
         </h2>
         <div class="bg-white rounded-2xl shadow-lg p-10 border-2 border-indigo-300 hover:border-indigo-500 transition">
           <ul class="list-disc list-inside space-y-4 text-gray-700 text-lg leading-relaxed">
-            <li>
+            <li class="flex items-center gap-3">
+              <img alt="HP logo in blue background with white HP text, 24 by 24 pixels" class="inline-block flex-shrink-0" height="24" src="https://storage.googleapis.com/a1aa/image/94acc02d-d807-47ad-26ec-e36ad9e479e7.jpg" width="24" />
               AI FOR BEGINNERS (Hp Life) –
-              <a
-                href="https://www.life-global.org/certificate/6a7c9da5-88bb-4152-897e-1d10599bf18c"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="text-indigo-600 font-semibold inline-flex items-center"
-                >View Certificate <i class="fas fa-external-link-alt ml-1 text-sm"></i
-              ></a>
+              <a href="https://www.life-global.org/certificate/6a7c9da5-88bb-4152-897e-1d10599bf18c" target="_blank" rel="noopener noreferrer" class="text-indigo-600 font-semibold inline-flex items-center ml-1">
+                View Certificate <i class="fas fa-external-link-alt ml-1 text-sm"></i>
+              </a>
             </li>
-            <li>
+            <li class="flex items-center gap-3">
+              <img alt="HP logo in blue background with white HP text, 24 by 24 pixels" class="inline-block flex-shrink-0" height="24" src="https://storage.googleapis.com/a1aa/image/94acc02d-d807-47ad-26ec-e36ad9e479e7.jpg" width="24" />
               Basics of Finance –
-              <a
-                href="https://www.life-global.org/certificate/ba58d238-7243-400a-88f7-0d9a161f1054"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="text-indigo-600 font-semibold inline-flex items-center"
-                >View Certificate <i class="fas fa-external-link-alt ml-1 text-sm"></i
-              ></a>
+              <a href="https://www.life-global.org/certificate/ba58d238-7243-400a-88f7-0d9a161f1054" target="_blank" rel="noopener noreferrer" class="text-indigo-600 font-semibold inline-flex items-center ml-1">
+                View Certificate <i class="fas fa-external-link-alt ml-1 text-sm"></i>
+              </a>
             </li>
-            <li>
+            <li class="flex items-center gap-3">
+              <img alt="HP logo in blue background with white HP text, 24 by 24 pixels" class="inline-block flex-shrink-0" height="24" src="https://storage.googleapis.com/a1aa/image/94acc02d-d807-47ad-26ec-e36ad9e479e7.jpg" width="24" />
               Data Science and Analytics –
-              <a
-                href="https://www.life-global.org/certificate/206ddc3a-ad3b-4cc3-8e40-5ad4a58ddefb"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="text-indigo-600 font-semibold inline-flex items-center"
-                >View Certificate <i class="fas fa-external-link-alt ml-1 text-sm"></i
-              ></a>
+              <a href="https://www.life-global.org/certificate/206ddc3a-ad3b-4cc3-8e40-5ad4a58ddefb" target="_blank" rel="noopener noreferrer" class="text-indigo-600 font-semibold inline-flex items-center ml-1">
+                View Certificate <i class="fas fa-external-link-alt ml-1 text-sm"></i>
+              </a>
             </li>
-            <li>
+            <li class="flex items-center gap-3">
+              <img alt="HP logo in blue background with white HP text, 24 by 24 pixels" class="inline-block flex-shrink-0" height="24" src="https://storage.googleapis.com/a1aa/image/94acc02d-d807-47ad-26ec-e36ad9e479e7.jpg" width="24" />
               Cash Flow –
-              <a
-                href="https://www.life-global.org/certificate/6787cce5-5384-41ea-8bba-70cc53a89d65"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="text-indigo-600 font-semibold inline-flex items-center"
-                >View Certificate <i class="fas fa-external-link-alt ml-1 text-sm"></i
-              ></a>
+              <a href="https://www.life-global.org/certificate/6787cce5-5384-41ea-8bba-70cc53a89d65" target="_blank" rel="noopener noreferrer" class="text-indigo-600 font-semibold inline-flex items-center ml-1">
+                View Certificate <i class="fas fa-external-link-alt ml-1 text-sm"></i>
+              </a>
             </li>
-            <li>
+            <li class="flex items-center gap-3">
+              <span class="coursera-logo-text" aria-label="Coursera logo text">coursera</span>
               Getting Started with Microsoft Excel –
-              <a
-                href="https://coursera.org/share/2ce79bc801241f43709e7e8304c1acf0"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="text-indigo-600 font-semibold inline-flex items-center"
-                >View Certificate <i class="fas fa-external-link-alt ml-1 text-sm"></i
-              ></a>
+              <a href="https://coursera.org/share/2ce79bc801241f43709e7e8304c1acf0" target="_blank" rel="noopener noreferrer" class="text-indigo-600 font-semibold inline-flex items-center ml-1">
+                View Certificate <i class="fas fa-external-link-alt ml-1 text-sm"></i>
+              </a>
             </li>
-            <li>
+            <li class="flex items-center gap-3">
+              <span class="great-learning-logo" aria-label="Great Learning logo with blue stylized letter G and text Great Learning stacked">
+                <img alt="Blue stylized letter G logo for Great Learning" src="https://storage.googleapis.com/a1aa/image/46257327-d936-4fae-dcc8-c2a5d42ffb0e.jpg" width="24" height="24" />
+                <p class="great-learning-logo-text">
+                  <span>Great</span>
+                  <span>Learning</span>
+                </p>
+              </span>
               Excel for Intermediate Level –
-              <a
-                href="https://www.mygreatlearning.com/certificate/OSMWSEUJ"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="text-indigo-600 font-semibold inline-flex items-center"
-                >View Certificate <i class="fas fa-external-link-alt ml-1 text-sm"></i
-              ></a>
+              <a href="https://www.mygreatlearning.com/certificate/OSMWSEUJ" target="_blank" rel="noopener noreferrer" class="text-indigo-600 font-semibold inline-flex items-center ml-1">
+                View Certificate <i class="fas fa-external-link-alt ml-1 text-sm"></i>
+              </a>
             </li>
-            <li>
+            <li class="flex items-center gap-3">
+              <span class="udemy-logo" aria-label="Udemy logo with purple chevron and black text">
+                <svg
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="3"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 15l6-6 6 6" />
+                </svg>
+                <span class="udemy-logo-text">udemy</span>
+              </span>
               15 Days of Power BI –
-              <a
-                href="https://www.udemy.com/certificate/UC-13e47189-c860-4709-b649-b58faed04026/"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="text-indigo-600 font-semibold inline-flex items-center"
-                >View Certificate <i class="fas fa-external-link-alt ml-1 text-sm"></i
-              ></a>
+              <a href="https://www.udemy.com/certificate/UC-13e47189-c860-4709-b649-b58faed04026/" target="_blank" rel="noopener noreferrer" class="text-indigo-600 font-semibold inline-flex items-center ml-1">
+                View Certificate <i class="fas fa-external-link-alt ml-1 text-sm"></i>
+              </a>
             </li>
           </ul>
         </div>
       </section>
 
-      <section>
+      <section id="skills" tabindex="-1">
         <h2 class="text-3xl font-bold fancy-border pb-2 mb-8 max-w-max mx-auto">
           Skills &amp; Languages
         </h2>
@@ -192,7 +263,7 @@
         </div>
       </section>
 
-      <section>
+      <section id="interests" tabindex="-1">
         <h2 class="text-3xl font-bold fancy-border pb-2 mb-8 max-w-max mx-auto">
           Interests &amp; Hobbies
         </h2>
@@ -206,7 +277,7 @@
         </div>
       </section>
 
-      <section>
+      <section id="contact" tabindex="-1">
         <h2 class="text-3xl font-bold fancy-border pb-2 mb-8 max-w-max mx-auto">
           Contact
         </h2>
@@ -222,15 +293,9 @@
         </div>
       </section>
 
-      <div class="text-center mt-12">
-        <a
-          href="https://drive.google.com/file/d/1kJ63iiaoXCCtYA1fJ70gKQFBYk93L5lY/view?usp=drivesdk"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Open Resume PDF in new tab"
-          class="inline-block bg-indigo-700 text-white font-semibold px-10 py-4 rounded-full shadow-lg hover:bg-indigo-800 transition"
-          >Download Resume (PDF)</a
-        >
+      <div class="flex justify-center gap-4 mt-12 flex-wrap">
+        <a href="#courses" class="px-6 py-3 rounded-full bg-indigo-600 text-white font-semibold shadow hover:bg-indigo-700 transition focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Courses</a>
+        <a href="https://drive.google.com/file/d/1kJ63iiaoXCCtYA1fJ70gKQFBYk93L5lY/view?usp=drivesdk" target="_blank" rel="noopener noreferrer" aria-label="Download Resume PDF" class="px-10 py-4 rounded-full bg-indigo-700 text-white font-semibold shadow hover:bg-indigo-800 transition focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Download Resume (PDF)</a>
       </div>
 
       <footer class="text-center mt-16 mb-6 text-indigo-700 font-semibold text-2xl tracking-wide select-none">
