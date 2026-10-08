@@ -15,9 +15,11 @@ export default defineConfig({
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     // nitro/vite builds from this
     server: { entry: "server" },
-    // Emit the portfolio route as static HTML for GitHub Pages.
+    // GitHub Pages needs static HTML, while Netlify uses its Nitro function.
+    // The current Nitro Netlify preset stores the function outside the preview
+    // location used by the prerender shim, so do not prerender in that build.
     prerender: {
-      enabled: true,
+      enabled: process.env.NETLIFY !== "true",
       crawlLinks: true,
     },
   },
