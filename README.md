@@ -1,7 +1,30 @@
 # Sai Prasath D P — Portfolio
 
-Personal portfolio for a B.Com graduate moving into Data Analytics / Finance & Business Analytics.
-Built with TanStack Start (React 19), TypeScript and Tailwind CSS.
+A personal portfolio site for Sai Prasath D P (B.Com graduate, aspiring Data Analyst), built with TanStack Start, React 19, TypeScript and Tailwind CSS v4.
+
+## Push this into your GitHub repo (Leo)
+
+1. Unzip this folder on your computer.
+2. Open a terminal inside the unzipped folder and run:
+
+```sh
+git init
+git remote add origin https://github.com/saiprasath00/Leo.git
+git add .
+git commit -m "New portfolio"
+git branch -M main
+git push -f origin main
+```
+
+(When asked for a password, use a GitHub Personal Access Token, not your account password.)
+
+## Deploy on Netlify (free)
+
+1. Go to [app.netlify.com](https://app.netlify.com) → **Add new site → Import an existing project → GitHub**, and pick the **Leo** repository.
+2. Netlify reads `netlify.toml` and sets everything up automatically. Just click **Deploy**.
+3. Every future push to the repo updates your live site automatically.
+
+Note: GitHub Pages alone cannot host this site (it needs a small server) — Netlify, Vercel or Cloudflare Pages all work out of the box with this setup.
 
 ## Run locally
 
@@ -10,31 +33,6 @@ npm install
 npm run dev
 ```
 
-Then open http://localhost:3000.
+## Where content lives
 
-## Push into the existing GitHub repo (saiprasath00/Leo)
-
-From this folder:
-
-```sh
-git init
-git remote add origin https://github.com/saiprasath00/Leo.git
-git add .
-git commit -m "New portfolio"
-git push -f origin main
-```
-
-## Deploy (recommended)
-
-This is a server-rendered app, so GitHub Pages alone shows a blank page.
-Use a one-click host instead:
-
-- **Vercel**: vercel.com → Add New Project → import `saiprasath00/Leo` → Deploy (auto-detects the framework).
-- **Netlify**: app.netlify.com → Add new site → Import an existing project → pick `saiprasath00/Leo` → Deploy.
-
-Both give a free URL and redeploy on every push to `main`.
-
-## Content
-
-All factual content (education, certifications, skills, links) lives in
-`src/lib/portfolio.ts` — edit it there and every section updates.
+All portfolio facts (skills, education, certifications, languages, resume link, contact details) are in `src/lib/portfolio.ts`. Page structure is `src/routes/index.tsx`; styles and the animation system are in `src/styles.css`.
