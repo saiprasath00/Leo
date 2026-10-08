@@ -1,38 +1,29 @@
-# Sai Prasath D P — Portfolio
+# Welcome to your Lovable project
 
-A personal portfolio site for Sai Prasath D P (B.Com graduate, aspiring Data Analyst), built with TanStack Start, React 19, TypeScript and Tailwind CSS v4.
+This project was built with [Lovable](https://lovable.dev).
 
-## Push this into your GitHub repo (Leo)
+## Build with Lovable
 
-1. Unzip this folder on your computer.
-2. Open a terminal inside the unzipped folder and run:
+Open your project in the [Lovable editor](https://lovable.dev) and keep building.
 
-```sh
-git init
-git remote add origin https://github.com/saiprasath00/Leo.git
-git add .
-git commit -m "New portfolio"
-git branch -M main
-git push -f origin main
-```
+- **Ship faster**: describe what you want to build and Lovable handles the code.
+- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
+- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
 
-(When asked for a password, use a GitHub Personal Access Token, not your account password.)
+## Development
 
-## Deploy on Netlify (free)
-
-1. Go to [app.netlify.com](https://app.netlify.com) → **Add new site → Import an existing project → GitHub**, and pick the **Leo** repository.
-2. Netlify reads `netlify.toml` and sets everything up automatically. Just click **Deploy**.
-3. Every future push to the repo updates your live site automatically.
-
-Note: GitHub Pages alone cannot host this site (it needs a small server) — Netlify, Vercel or Cloudflare Pages all work out of the box with this setup.
-
-## Run locally
+Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
 
 ```sh
-npm install
+git clone <this-repository-url>
+cd <repository-name>
+npm i
 npm run dev
 ```
 
-## Where content lives
+## Built with
 
-All portfolio facts (skills, education, certifications, languages, resume link, contact details) are in `src/lib/portfolio.ts`. Page structure is `src/routes/index.tsx`; styles and the animation system are in `src/styles.css`.
+- TanStack Start
+- TypeScript
+- React
+- Tailwind CSS
