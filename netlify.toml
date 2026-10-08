@@ -1,6 +1,0 @@
-[build]
-  command = "npm install && npm run build"
-
-[build.environment]
-  NITRO_PRESET = "netlify"
-  NODE_VERSION = "22"
