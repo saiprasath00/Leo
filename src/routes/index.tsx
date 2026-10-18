@@ -128,8 +128,9 @@ function Portfolio() {
               </div>
               <div className="chips">{powerBiProject.skills.map(item => <span className="chip" key={item}>{item}</span>)}</div>
               <div className="project-actions">
-                <Button variant="glass" asChild><a href={powerBiProject.downloadUrl} target="_blank" rel="noopener noreferrer">Download Power BI Project <Download aria-hidden="true" /></a></Button>
+                <Button variant="glass" asChild><a href={powerBiProject.downloadUrl} target="_blank" rel="noopener noreferrer">Download PBIP Source + Data <Download aria-hidden="true" /></a></Button>
               </div>
+              <p className="project-intro">{powerBiProject.downloadNote}</p>
             </div>
           </article>
         </section>

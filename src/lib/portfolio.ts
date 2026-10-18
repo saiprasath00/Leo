@@ -5,6 +5,7 @@ export const powerBiProject = {
   title: 'TCS Financial Outlook Dashboard',
   downloadUrl: 'https://github.com/saiprasath00/Leo/raw/main/public/downloads/TCS_Financial_Outlook_Dashboard_PBIP.zip',
   intro: 'A four-page Power BI Desktop scenario-analysis dashboard that connects historical financial data to Base, Bull and Bear analytical cases for FY2027–FY2028.',
+  downloadNote: 'PBIP source download includes the static workbook; set its local WorkbookPath before the first refresh.',
   facts: [
     ['Scope', 'Four report pages covering executive KPIs, historical trends, scenario drivers and financial detail.'],
     ['Analytical work', 'Power Query M, a semantic model and DAX measures for revenue, calculated EBITDA proxy, adjusted PAT and organic free cash flow.'],
