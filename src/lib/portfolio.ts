@@ -3,7 +3,7 @@ export const resumeUrl = 'https://docs.google.com/document/d/16AesJzxyYFKqkq9sDp
 
 export const powerBiProject = {
   title: 'TCS Financial Outlook Dashboard',
-  downloadUrl: 'https://github.com/saiprasath00/Leo/raw/main/public/downloads/TCS_Financial_Outlook_Dashboard_PBIP.zip',
+  downloadUrl: 'https://raw.githubusercontent.com/saiprasath00/Leo/b478992dd4fa6fdd137f1ff210fbf9fcce727590/public/downloads/TCS_Financial_Outlook_Dashboard_PBIP.zip',
   intro: 'A four-page Power BI Desktop scenario-analysis dashboard that connects historical financial data to Base, Bull and Bear analytical cases for FY2027–FY2028.',
   downloadNote: 'PBIP source download includes the static workbook; set its local WorkbookPath before the first refresh.',
   facts: [
