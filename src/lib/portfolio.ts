@@ -1,5 +1,6 @@
 // Facts transcribed from the uploaded portfolio; statuses reflect the owner's latest instructions.
-export const resumeUrl = 'https://docs.google.com/document/d/16AesJzxyYFKqkq9sDpVSlOpMwELsHUmp/edit?usp=drivesdk&ouid=107601575523668681579&rtpof=true&sd=true';
+export const resumeViewUrl = 'https://www.dropbox.com/scl/fi/10asojmr2ct7b3semhge4/Sai_Prasath_Resume_ATS_Power_BI.docx?rlkey=4l4cky1xcqmmjzeih6qrmt6sh&st=6q7761c8&dl=0';
+export const resumeDownloadUrl = 'https://www.dropbox.com/scl/fi/10asojmr2ct7b3semhge4/Sai_Prasath_Resume_ATS_Power_BI.docx?rlkey=4l4cky1xcqmmjzeih6qrmt6sh&st=6q7761c8&dl=1';
 
 export const powerBiProject = {
   title: 'TCS Financial Outlook Dashboard',
