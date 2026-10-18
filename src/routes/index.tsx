@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router';
 import { useEffect, useRef, useState } from 'react';
 import { ArrowDown, ArrowRight, ArrowUpRight, BarChart3, Check, Download, FileSpreadsheet, Mail, MapPin, Menu, Phone, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { certifications, education, languages, resumeUrl, skillGroups } from '@/lib/portfolio';
+import { certifications, education, languages, powerBiProject, resumeUrl, skillGroups } from '@/lib/portfolio';
 import financeGlass from '@/assets/finance-glass.jpg';
 
 export const Route = createFileRoute('/')({
@@ -88,7 +88,7 @@ function Portfolio() {
           </div>
         </section>
         <section id="projects" className="section container-portfolio" aria-labelledby="projects-title">
-          <div className="section-head reveal"><p className="kicker">Selected work</p><h2 id="projects-title">Featured Project</h2><p className="section-sub">Financial analysis, from historical data to forward-looking insight.</p></div>
+          <div className="section-head reveal"><p className="kicker">Selected work</p><h2 id="projects-title">Featured Projects</h2><p className="section-sub">Financial analysis, from historical data to forward-looking insight.</p></div>
           <article className="project-card reveal">
             <div className="project-content">
               <p className="kicker">TCS · Independent academic project · Microsoft Excel</p>
@@ -116,6 +116,20 @@ function Portfolio() {
                 <p><strong>Practical learning:</strong> applying scenario modeling, dynamic linking and automated validation to a financial forecasting workbook.</p>
                 <p>Source: TCS Annual Reports FY18–FY25. A companion website showcasing this project is at saitcsproject.lovable.app.</p>
               </div>}
+            </div>
+          </article>
+          <article className="project-card reveal">
+            <div className="project-content">
+              <p className="kicker">TCS · Independent academic project · Power BI Desktop</p>
+              <h3>{powerBiProject.title}</h3>
+              <p className="project-intro">{powerBiProject.intro}</p>
+              <div className="project-facts">
+                {powerBiProject.facts.map(([label, detail]) => <p key={label}><strong>{label} — </strong>{detail}</p>)}
+              </div>
+              <div className="chips">{powerBiProject.skills.map(item => <span className="chip" key={item}>{item}</span>)}</div>
+              <div className="project-actions">
+                <Button variant="glass" asChild><a href={powerBiProject.downloadUrl} target="_blank" rel="noopener noreferrer">Download Power BI Project <Download aria-hidden="true" /></a></Button>
+              </div>
             </div>
           </article>
         </section>

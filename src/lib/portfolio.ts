@@ -1,6 +1,18 @@
 // Facts transcribed from the uploaded portfolio; statuses reflect the owner's latest instructions.
 export const resumeUrl = 'https://docs.google.com/document/d/16AesJzxyYFKqkq9sDpVSlOpMwELsHUmp/edit?usp=drivesdk&ouid=107601575523668681579&rtpof=true&sd=true';
 
+export const powerBiProject = {
+  title: 'TCS Financial Outlook Dashboard',
+  downloadUrl: 'https://github.com/saiprasath00/Leo/raw/main/public/downloads/TCS_Financial_Outlook_Dashboard_PBIP.zip',
+  intro: 'A four-page Power BI Desktop scenario-analysis dashboard that connects historical financial data to Base, Bull and Bear analytical cases for FY2027–FY2028.',
+  facts: [
+    ['Scope', 'Four report pages covering executive KPIs, historical trends, scenario drivers and financial detail.'],
+    ['Analytical work', 'Power Query M, a semantic model and DAX measures for revenue, calculated EBITDA proxy, adjusted PAT and organic free cash flow.'],
+    ['Data context', 'FY2018–FY2025 historical workbook data and an FY2026 actual baseline; scenario values are analytical sensitivity cases, not TCS guidance, audited actuals or consensus estimates.'],
+  ],
+  skills: ['Power BI Desktop', 'Power Query', 'DAX', 'Data Modeling', 'KPI Reporting', 'Scenario Analysis'],
+};
+
 export const education = [
   { period: '2023 – 2026', title: 'Bachelor of Commerce (B.Com)', institution: "Charan’s Degree College · Bengaluru City University", result: 'CGPA: 9.05', status: 'Completed' },
   { period: 'Feb – Apr 2026', title: 'Intensive Excel Training Program', institution: 'Structured Skill Development · Bengaluru', detail: 'Case-based assignments covering IF, SUMIF, COUNTIF, VLOOKUP, XLOOKUP and INDEX-MATCH, with exposure to Power Query automation, data cleaning and PivotTable-driven analytical reporting.' },
