@@ -1,11 +1,11 @@
 // Facts transcribed from the uploaded portfolio; statuses reflect the owner's latest instructions.
-export const resumeViewUrl = 'https://raw.githubusercontent.com/saiprasath00/Leo/main/public/downloads/Sai_Prasath_DP_Resume_Professional.pdf';
-export const resumeDownloadUrl = 'https://raw.githubusercontent.com/saiprasath00/Leo/main/public/downloads/Sai_Prasath_Resume_Pack.zip';
-export const excelProjectDownloadUrl = 'https://raw.githubusercontent.com/saiprasath00/Leo/main/public/downloads/TCS_Financial_Forecasting_Model.xlsx';
+export const resumeViewUrl = '/downloads/Sai_Prasath_DP_Resume_Professional.pdf';
+export const resumeDownloadUrl = '/downloads/Sai_Prasath_Resume_Pack.zip';
+export const excelProjectDownloadUrl = '/downloads/TCS_Financial_Forecasting_Model.xlsx';
 
 export const powerBiProject = {
   title: 'TCS Financial Outlook Dashboard',
-  downloadUrl: 'https://raw.githubusercontent.com/saiprasath00/Leo/main/public/downloads/TCS_Financial_Outlook_Dashboard_PBIP.zip',
+  downloadUrl: '/downloads/TCS_Financial_Outlook_Dashboard_PBIP.zip',
   intro: 'A four-page Power BI Desktop scenario-analysis dashboard that turns TCS historical financial data into clear executive, trend, scenario-driver and financial-detail views.',
   downloadNote: 'PBIP source download includes the report project and static workbook. Set its local WorkbookPath before the first refresh; FY2027–FY2028 figures are sensitivity cases, not TCS guidance or consensus.',
   facts: [
