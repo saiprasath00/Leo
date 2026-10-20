@@ -1,12 +1,12 @@
 // Facts transcribed from the uploaded portfolio; statuses reflect the owner's latest instructions.
-export const resumeViewUrl = 'https://www.dropbox.com/scl/fi/10asojmr2ct7b3semhge4/Sai_Prasath_Resume_ATS_Power_BI.docx?rlkey=4l4cky1xcqmmjzeih6qrmt6sh&st=6q7761c8&dl=0';
-export const resumeDownloadUrl = 'https://www.dropbox.com/scl/fi/10asojmr2ct7b3semhge4/Sai_Prasath_Resume_ATS_Power_BI.docx?rlkey=4l4cky1xcqmmjzeih6qrmt6sh&st=6q7761c8&dl=1';
+export const resumeViewUrl = 'https://raw.githubusercontent.com/saiprasath00/Leo/main/public/downloads/Sai_Prasath_DP_Resume_Professional.pdf';
+export const resumeDownloadUrl = 'https://raw.githubusercontent.com/saiprasath00/Leo/main/public/downloads/Sai_Prasath_Resume_Pack.zip';
 
 export const powerBiProject = {
   title: 'TCS Financial Outlook Dashboard',
-  downloadUrl: 'https://raw.githubusercontent.com/saiprasath00/Leo/b478992dd4fa6fdd137f1ff210fbf9fcce727590/public/downloads/TCS_Financial_Outlook_Dashboard_PBIP.zip',
-  intro: 'A four-page Power BI Desktop scenario-analysis dashboard that connects historical financial data to Base, Bull and Bear analytical cases for FY2027–FY2028.',
-  downloadNote: 'PBIP source download includes the static workbook; set its local WorkbookPath before the first refresh.',
+  downloadUrl: 'https://raw.githubusercontent.com/saiprasath00/Leo/main/public/downloads/TCS_Financial_Outlook_Dashboard_PBIP.zip',
+  intro: 'A four-page Power BI Desktop scenario-analysis dashboard that turns TCS historical financial data into clear executive, trend, scenario-driver and financial-detail views.',
+  downloadNote: 'PBIP source download includes the report project and static workbook. Set its local WorkbookPath before the first refresh; FY2027–FY2028 figures are sensitivity cases, not TCS guidance or consensus.',
   facts: [
     ['Scope', 'Four report pages covering executive KPIs, historical trends, scenario drivers and financial detail.'],
     ['Analytical work', 'Power Query M, a semantic model and DAX measures for revenue, calculated EBITDA proxy, adjusted PAT and organic free cash flow.'],

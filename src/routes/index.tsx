@@ -20,7 +20,7 @@ export const Route = createFileRoute('/')({
 function ResumeButton() {
   return <>
     <Button variant="glass" asChild><a href={resumeViewUrl} target="_blank" rel="noopener noreferrer">View Resume <ArrowUpRight aria-hidden="true" /></a></Button>
-    <Button variant="glass" asChild><a href={resumeDownloadUrl} download="Sai_Prasath_Resume_ATS_Power_BI.docx">Download Resume <Download aria-hidden="true" /></a></Button>
+    <Button variant="glass" asChild><a href={resumeDownloadUrl} download="Sai_Prasath_Resume_Pack.zip">Download Resume Pack <Download aria-hidden="true" /></a></Button>
   </>;
 }
 
