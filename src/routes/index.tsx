@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router';
 import { useEffect, useRef, useState } from 'react';
 import { ArrowDown, ArrowRight, ArrowUpRight, BarChart3, Check, Download, FileSpreadsheet, Mail, MapPin, Menu, Phone, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { certifications, education, languages, powerBiProject, resumeDownloadUrl, resumeViewUrl, skillGroups } from '@/lib/portfolio';
+import { certifications, education, excelProjectDownloadUrl, languages, powerBiProject, resumeDownloadUrl, resumeViewUrl, skillGroups } from '@/lib/portfolio';
 import financeGlass from '@/assets/finance-glass.jpg';
 
 export const Route = createFileRoute('/')({
@@ -106,7 +106,8 @@ function Portfolio() {
               <div className="chips">{['Microsoft Excel', 'Scenario Modeling', 'FCF Projection', 'Sensitivity Analysis', 'Dynamic Linking', 'Auto-Validation'].map(item => <span className="chip" key={item}>{item}</span>)}</div>
               <div className="project-actions">
                 <Button variant="text" aria-expanded={caseOpen} aria-controls="case-study" onClick={() => setCaseOpen(!caseOpen)}>{caseOpen ? 'Close Case Study' : 'View Case Study'}{caseOpen ? <X aria-hidden="true" /> : <ArrowRight aria-hidden="true" />}</Button>
-                <Button variant="glass" asChild><a href="https://saitcsproject1.netlify.app/" target="_blank" rel="noopener noreferrer">View Project Website <ArrowUpRight aria-hidden="true" /></a></Button>
+                <Button variant="glass" asChild><a href="https://saitcsproject1.netlify.app/" target="_blank" rel="noopener noreferrer">Open Excel Project <ArrowUpRight aria-hidden="true" /></a></Button>
+                <Button variant="glass" asChild><a href={excelProjectDownloadUrl} download="TCS_Financial_Forecasting_Model.xlsx">Download Excel Model <Download aria-hidden="true" /></a></Button>
               </div>
               {caseOpen && <div className="case-detail" id="case-study" ref={caseRef}>
                 <h4>Inside the model</h4>
@@ -157,3 +158,4 @@ function Portfolio() {
     </div>
   );
 }
+

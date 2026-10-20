@@ -1,6 +1,7 @@
 // Facts transcribed from the uploaded portfolio; statuses reflect the owner's latest instructions.
 export const resumeViewUrl = 'https://raw.githubusercontent.com/saiprasath00/Leo/main/public/downloads/Sai_Prasath_DP_Resume_Professional.pdf';
 export const resumeDownloadUrl = 'https://raw.githubusercontent.com/saiprasath00/Leo/main/public/downloads/Sai_Prasath_Resume_Pack.zip';
+export const excelProjectDownloadUrl = 'https://raw.githubusercontent.com/saiprasath00/Leo/main/public/downloads/TCS_Financial_Forecasting_Model.xlsx';
 
 export const powerBiProject = {
   title: 'TCS Financial Outlook Dashboard',
@@ -35,3 +36,4 @@ export const skillGroups = [
 ];
 
 export const languages = [['English', 'Proficient'], ['Tamil', 'Native'], ['Kannada', 'Proficient'], ['Hindi', 'Conversational']];
+
