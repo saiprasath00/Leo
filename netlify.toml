@@ -1,7 +1,9 @@
 [build]
-  command = "npm install && npm run build"
-  publish = "dist"
+  command = "npm run build"
+  publish = ".output/public"
 
 [build.environment]
-  NITRO_PRESET = "netlify"
+  # This adapter provides the fetch entry required by the prerender plugin.
+  # Netlify publishes only .output/public; no server function is deployed.
+  NITRO_PRESET = "cloudflare-module"
   NODE_VERSION = "22"

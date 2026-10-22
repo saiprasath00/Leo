@@ -14,4 +14,10 @@ Existing resumes remain under `public/downloads`; their redesign is a separate p
 
 Canonical site: https://saiprasathportfolio.netlify.app/
 
-Local changes do not update the live Netlify deployment automatically. The static production output is `.output/public` for the default local build; the Netlify configuration uses its own runtime preset.
+## Publishing
+
+The live GitHub Pages site is https://saiprasath00.github.io/Leo/ . Pushing `main` runs `.github/workflows/deploy-pages.yml` and publishes `.output/public`.
+
+Netlify also publishes `.output/public`, including the prerendered `index.html`. Its build command is `npm run build`. The build uses the fetch-compatible Nitro adapter required by the current prerender plugin; only the static output is published, so no Cloudflare service or Netlify server function is required.
+
+To update https://saiprasathportfolio.netlify.app/ , connect that existing Netlify project to this repository's `main` branch, or deploy `.output/public` to that project with Netlify CLI. A GitHub Pages deployment does not update the Netlify address.
