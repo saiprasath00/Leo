@@ -1,33 +1,17 @@
-# Welcome to your Lovable project
+# Sai Prasath D P — Portfolio
 
-This project was built with [Lovable](https://lovable.dev).
-
-## Live website
-
-[Open the Netlify portfolio](https://luminous-arithmetic-311bc6.netlify.app/)
-
-## Build with Lovable
-
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
+Personal portfolio for Sai Prasath D P, B.Com graduate and aspiring data analyst in Bengaluru.
 
 ## Development
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+Install dependencies with `npm install`. Start the local site with `npm run dev`. Production build: `npm run build`. Type check: `npx tsc --noEmit`. Existing routing test: `npm test`.
 
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
-npm run dev
-```
+Portfolio facts and document links are in `src/lib/portfolio.ts`. Page composition is in `src/routes/index.tsx`; styling and motion are in `src/styles.css`.
 
-## Built with
+The redesign puts the owner's full name, career direction and evidence of practical work first. Interactive controls remain stationary. Decorative motion supports reduced-motion preferences and a manual pause control.
 
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
+Existing resumes remain under `public/downloads`; their redesign is a separate phase.
+
+Canonical site: https://saiprasathportfolio.netlify.app/
+
+Local changes do not update the live Netlify deployment automatically. The static production output is `.output/public` for the default local build; the Netlify configuration uses its own runtime preset.

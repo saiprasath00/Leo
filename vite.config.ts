@@ -19,8 +19,8 @@ export default defineConfig({
     // The current Nitro Netlify preset stores the function outside the preview
     // location used by the prerender shim, so do not prerender in that build.
     prerender: {
-      enabled: process.env.NETLIFY !== "true",
-      crawlLinks: true,
+      enabled: process.env["NETLIFY"] !== "true",
+      crawlLinks: false,
     },
   },
 });

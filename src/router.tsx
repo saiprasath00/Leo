@@ -7,6 +7,8 @@ export const getRouter = () => {
 
   const router = createRouter({
     routeTree,
+    basepath:
+      typeof window !== "undefined" && window.location.pathname.startsWith("/Leo/") ? "/Leo" : "/",
     context: { queryClient },
     scrollRestoration: true,
     defaultPreloadStaleTime: 0,

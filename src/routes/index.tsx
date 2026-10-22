@@ -1,161 +1,504 @@
-import { createFileRoute } from '@tanstack/react-router';
-import { useEffect, useRef, useState } from 'react';
-import { ArrowDown, ArrowRight, ArrowUpRight, BarChart3, Check, Download, FileSpreadsheet, Mail, MapPin, Menu, Phone, X } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { certifications, education, excelProjectDownloadUrl, languages, powerBiProject, resumeDownloadUrl, resumeViewUrl, skillGroups } from '@/lib/portfolio';
-import financeGlass from '@/assets/finance-glass.jpg';
+import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { ArrowDown, ArrowUpRight, Download, Mail, Phone } from "lucide-react";
+import {
+  linkedInUrl,
+  certifications,
+  education,
+  excelProjectDownloadUrl,
+  languages,
+  powerBiProject,
+  resumeViewUrl,
+  skillGroups,
+} from "@/lib/portfolio";
 
-export const Route = createFileRoute('/')({
-  head: () => ({ meta: [
-    { title: 'Sai Prasath D P | B.Com Graduate & Aspiring Data Analyst' },
-    { name: 'description', content: 'Bengaluru-based B.Com graduate with Excel, Power BI, finance and accounting skills. Explore Sai Prasath D P’s TCS financial forecasting case study, education and credentials.' },
-    { property: 'og:title', content: 'Sai Prasath D P | Finance & Business Analytics' },
-    { property: 'og:description', content: 'B.Com Graduate | Aspiring Data Analyst. Excel, Power BI and practical financial analysis — explore my portfolio and get in touch.' },
-    { property: 'og:type', content: 'website' },
-    { name: 'twitter:card', content: 'summary_large_image' },
-  ] }),
+export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Sai Prasath D P | Commerce & Business Reporting" },
+      {
+        name: "description",
+        content:
+          "Sai Prasath D P, B.Com graduate and commerce graduate in Bengaluru. Explore Excel financial modeling and Power BI projects.",
+      },
+    ],
+  }),
   component: Portfolio,
 });
 
-function ResumeButton() {
-  return <>
-    <Button variant="glass" asChild><a href={resumeViewUrl} target="_blank" rel="noopener noreferrer">View Resume <ArrowUpRight aria-hidden="true" /></a></Button>
-    <Button variant="glass" asChild><a href={resumeDownloadUrl} download="Sai_Prasath_Resume_Pack.zip">Download Resume Pack <Download aria-hidden="true" /></a></Button>
-  </>;
-}
-
-function useReveal() {
+function Portfolio() {
+  const clicks = useRef(0);
+  const [burst, setBurst] = useState(0);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const burstTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const clickTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const triggerEgg = () => {
+    clicks.current += 1;
+    if (clickTimer.current) clearTimeout(clickTimer.current);
+    clickTimer.current = setTimeout(() => {
+      clicks.current = 0;
+    }, 1800);
+    if (clicks.current < 5) return;
+    clicks.current = 0;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    setBurst((value) => value + 1);
+    if (burstTimer.current) clearTimeout(burstTimer.current);
+    burstTimer.current = setTimeout(() => setBurst(0), 2400);
+  };
   useEffect(() => {
-    const els = Array.from(document.querySelectorAll<HTMLElement>('.reveal'));
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { els.forEach((el) => el.classList.add('is-visible')); return; }
-    document.documentElement.classList.add('motion-ready');
-    let ticking = false;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          const el = entry.target as HTMLElement;
+          if (!reduced.matches) {
+            const delay = Number(el.dataset["motionDelay"] || 0);
+            el.animate(
+              [
+                { opacity: 0.15, transform: "translateY(28px)" },
+                { opacity: 1, transform: "translateY(0)" },
+              ],
+              { duration: 750, delay, easing: "cubic-bezier(.16,1,.3,1)" },
+            );
+          }
+          el.classList.add("scroll-seen");
+          observer.unobserve(el);
+        }
+      },
+      { threshold: 0.12 },
+    );
+    document
+      .querySelectorAll(
+        ".section h2, .about-layout p, .language-list > span, .timeline article, .credentials details, .contact-content, .section > .eyebrow, .project-workspace, .toolkit-layout, .timeline",
+      )
+      .forEach((el, i) => {
+        (el as HTMLElement).dataset["motionDelay"] = String((i % 3) * 75);
+        observer.observe(el);
+      });
     let frame = 0;
     const update = () => {
-      ticking = false;
-      for (const el of els) {
-        if (el.classList.contains('is-visible')) continue;
-        if (el.getBoundingClientRect().top < window.innerHeight - 40) el.classList.add('is-visible');
-      }
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        document.documentElement.style.setProperty(
+          "--page-scroll",
+          `${Math.min(window.scrollY * 0.06, 45)}px`,
+        );
+        setScrollProgress(max > 0 ? window.scrollY / max : 0);
+      });
     };
-    const onScroll = () => { if (!ticking) { ticking = true; frame = requestAnimationFrame(update); } };
     update();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll, { passive: true });
-    return () => { cancelAnimationFrame(frame); document.documentElement.classList.remove('motion-ready'); window.removeEventListener('scroll', onScroll); window.removeEventListener('resize', onScroll); };
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+      if (burstTimer.current) clearTimeout(burstTimer.current);
+      if (clickTimer.current) clearTimeout(clickTimer.current);
+    };
   }, []);
-}
 
-function Portfolio() {
-  useReveal();
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [caseOpen, setCaseOpen] = useState(false);
-  const menuRef = useRef<HTMLButtonElement>(null);
-  const caseRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const onKey = (event: KeyboardEvent) => { if (event.key === 'Escape' && menuOpen) { setMenuOpen(false); menuRef.current?.focus(); } };
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, [menuOpen]);
-  useEffect(() => { if (caseOpen) caseRef.current?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'center' }); }, [caseOpen]);
+  const [project, setProject] = useState(0);
+  const [skill, setSkill] = useState(0);
+
   return (
-    <div className="portfolio" id="top">
-      <a className="skip-link" href="#main">Skip to content</a>
-      <header className="portfolio-nav">
-        <div className="container-portfolio nav-inner">
-          <a href="#top" className="brand" aria-label="Sai Prasath D P, home">SP<span>.</span></a>
-          <nav className="nav-links" aria-label="Primary navigation">
-            <a className="desktop-link" href="#about">About</a>
-            <a href="#projects">Projects</a>
-            <a href="#skills">Skills</a>
-            <a className="desktop-link" href="#education">Education</a>
-            <Button variant="portfolio" asChild><a href="#contact">Contact</a></Button>
-            <Button ref={menuRef} variant="ghost" size="icon" className="menu-button" aria-label={menuOpen ? 'Close navigation' : 'Open navigation'} aria-expanded={menuOpen} aria-controls="mobile-navigation" onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <X /> : <Menu />}</Button>
-          </nav>
+    <div className="portfolio">
+      <div
+        className="reading-progress"
+        style={{ transform: `scaleX(${scrollProgress})` }}
+        aria-hidden="true"
+      />
+      {burst > 0 && (
+        <div className="egg-burst" key={burst} aria-hidden="true">
+          {Array.from({ length: 32 }, (_, i) => (
+            <i
+              key={i}
+              style={
+                {
+                  "--x": `${Math.cos(i * 2.399) * (120 + i * 10)}px`,
+                  "--y": `${Math.sin(i * 2.399) * (120 + i * 10)}px`,
+                  "--r": `${i * 43}deg`,
+                  "--c": ["#b83b19", "#ffd45b", "#241526", "#ffac86"][i % 4],
+                  animationDelay: `${(i % 5) * 35}ms`,
+                } as CSSProperties
+              }
+            />
+          ))}
         </div>
-        {menuOpen && <nav id="mobile-navigation" className="mobile-nav" aria-label="More navigation">{[['about', 'About Me'], ['projects', 'Featured Project'], ['skills', 'Skills'], ['learning', 'Currently Learning'], ['education', 'Education & Training'], ['certifications', 'Certifications'], ['languages', 'Languages'], ['contact', 'Contact']].map(([id, label]) => <a key={id} href={`#${id}`} onClick={() => setMenuOpen(false)}>{label}</a>)}</nav>}
+      )}
+
+      <a className="skip" href="#main">
+        Skip to content
+      </a>
+      <header className="masthead">
+        <a className="wordmark" href="#top" onClick={triggerEgg}>
+          Sai Prasath D P
+        </a>
+        <nav aria-label="Primary">
+          <a href="#about">About</a>
+          <a href="#work">Work</a>
+          <a href="#toolkit">Toolkit</a>
+          <a href="#journey">Journey</a>
+          <a href="#contact">Say hello ↗</a>
+        </nav>
       </header>
       <main id="main">
-        <section className="hero" aria-labelledby="hero-title">
-          <img className="hero-art" src={financeGlass} alt="" width={1536} height={1024} fetchPriority="high" />
-          <div className="container-portfolio">
-            <div className="hero-copy">
-              <div className="location reveal"><span className="location-dot" />Bengaluru, India</div>
-              <h1 id="hero-title" className="reveal reveal-d1">Sai Prasath <span>D P</span></h1>
-              <p className="positioning reveal reveal-d2">B.Com Graduate <span aria-hidden="true">|</span> Aspiring Data Analyst</p>
-              <p className="positioning-secondary reveal reveal-d3">Finance &amp; Business Analytics</p>
-              <p className="hero-lede reveal reveal-d4">A commerce and finance foundation, with hands-on Excel, Power BI and financial-modeling work — building toward a career in data analytics.</p>
-              <div className="hero-actions reveal reveal-d5"><Button variant="portfolio" asChild><a href="#projects">View Projects <ArrowDown aria-hidden="true" /></a></Button><ResumeButton /></div>
-              <div className="hero-index reveal reveal-d6"><span><FileSpreadsheet aria-hidden="true" />Excel &amp; Financial Modeling</span><span><BarChart3 aria-hidden="true" />Power BI &amp; Reporting</span></div>
+        <section className="hero" id="top">
+          <svg className="hero-motion-art" viewBox="0 0 240 240" aria-hidden="true">
+            <circle className="art-orbit" cx="120" cy="120" r="97" />
+            <path
+              className="art-loop"
+              d="M30 125C30 30 205 25 205 120S45 220 45 110S210 45 210 130"
+            />
+            <circle className="art-dot" cx="120" cy="23" r="7" />
+          </svg>
+          <div className="hero-label">
+            <span>HELLO, I’M</span>
+            <span>BENGALURU, INDIA</span>
+          </div>
+          <h1 className="horizontal-name" aria-label="Sai Prasath D P">
+            <span className="name-letters" aria-hidden="true">
+              {Array.from("Sai Prasath D P").map((letter, i) => (
+                <span
+                  className={letter === " " ? "name-space" : "name-letter"}
+                  key={i}
+                  style={{ "--letter-index": i } as CSSProperties}
+                >
+                  {letter === " " ? " " : letter}
+                </span>
+              ))}
+            </span>
+          </h1>
+          <div className="hero-bottom">
+            <p className="role">
+              B.Com graduate.
+              <br />
+              Excel & Power BI.
+            </p>
+            <div className="hero-intro">
+              <p>
+                A curious commerce graduate finding my way through data, practical projects and
+                continuous learning.
+              </p>
+              <div className="actions">
+                <a className="button" href="#about">
+                  Get to know me <ArrowDown size={17} />
+                </a>
+                <a
+                  className="text-link"
+                  href={linkedInUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  LinkedIn <ArrowUpRight size={16} />
+                </a>
+              </div>
             </div>
           </div>
         </section>
-        <section id="projects" className="section container-portfolio" aria-labelledby="projects-title">
-          <div className="section-head reveal"><p className="kicker">Selected work</p><h2 id="projects-title">Featured Projects</h2><p className="section-sub">Financial analysis, from historical data to forward-looking insight.</p></div>
-          <article className="project-card reveal">
-            <div className="project-content">
-              <p className="kicker">TCS · Independent academic project · Microsoft Excel</p>
-              <h3>TCS Financial Analysis &amp; Forecasting Model</h3>
-              <p className="project-intro">A six-sheet Excel model covering eight years of TCS actuals (FY2018–FY2025), with Base, Bull and Bear forecasts through FY2028.</p>
-              <div className="project-facts">
-                <p><strong>Objective — </strong>Connect historical financial statements to scenario-based forecasts of profitability and free cash flow.</p>
-                <p><strong>Analytical work — </strong>Income statements, margins, EPS, CAGR, bottom-up net profit and free cash flow projections, in INR Crores.</p>
-                <p><strong>Outcome — </strong>A dynamically linked workbook with an assumptions panel, growth-rate override and 11 automated validation checks, all passing.</p>
-                <p><strong>Status — </strong>Built as an independent academic Excel project, using TCS Annual Reports FY18–FY25.</p>
+        <section className="about section" id="about">
+          <p className="eyebrow">01 / THE PERSON BEHIND THE PROJECTS</p>
+          <div className="about-layout">
+            <h2>
+              A little
+              <br />
+              <em>about me.</em>
+            </h2>
+            <div>
+              <p className="about-lead">
+                I’m Sai, a B.Com graduate based in Bengaluru, developing practical skills in
+                business reporting.
+              </p>
+              <p>
+                My commerce education gave me a foundation in finance and accounting. Working with
+                Excel and Power BI has helped me put that knowledge into practice through financial
+                analysis, models and reports.
+              </p>
+              <p>
+                I’m looking for an entry-level role where I can contribute, learn from a team and
+                keep developing my analytical skills. I’m currently building practical skills in SQL
+                and Python.
+              </p>
+              <a className="text-link" href={resumeViewUrl} target="_blank" rel="noreferrer">
+                Read my current resume <ArrowUpRight size={16} />
+              </a>
+              <div className="language-list">
+                {languages.map(([name, level]) => (
+                  <span key={name}>
+                    <strong>{name}</strong>
+                    {level}
+                  </span>
+                ))}
               </div>
-              <div className="chips">{['Microsoft Excel', 'Scenario Modeling', 'FCF Projection', 'Sensitivity Analysis', 'Dynamic Linking', 'Auto-Validation'].map(item => <span className="chip" key={item}>{item}</span>)}</div>
-              <div className="project-actions">
-                <Button variant="text" aria-expanded={caseOpen} aria-controls="case-study" onClick={() => setCaseOpen(!caseOpen)}>{caseOpen ? 'Close Case Study' : 'View Case Study'}{caseOpen ? <X aria-hidden="true" /> : <ArrowRight aria-hidden="true" />}</Button>
-                <Button variant="glass" asChild><a href="https://saitcsproject1.netlify.app/" target="_blank" rel="noopener noreferrer">Open Excel Project <ArrowUpRight aria-hidden="true" /></a></Button>
-                <Button variant="glass" asChild><a href={excelProjectDownloadUrl} download="TCS_Financial_Forecasting_Model.xlsx">Download Excel Model <Download aria-hidden="true" /></a></Button>
-              </div>
-              {caseOpen && <div className="case-detail" id="case-study" ref={caseRef}>
-                <h4>Inside the model</h4>
-                <ul>
-                  <li>Built a 6-sheet model on 8 years of TCS actuals (FY2018–FY2025): income statement, free cash flow, margins, EPS and CAGR analytics, all in INR Crores.</li>
-                  <li>Engineered a dynamic 3-scenario forecast (Base, Bull, Bear) through FY2028, fully linked to an assumptions panel, plus a custom growth-rate override control.</li>
-                  <li>Derived net profit bottom-up (EBITDA → EBIT → tax → NP) and projected free cash flow as NP + Depreciation − Capex across every year.</li>
-                  <li>Designed an Excel dashboard with live KPI cards, a scenario dropdown and an 11-point automated validation suite, with all checks passing.</li>
-                </ul>
-                <p><strong>Practical learning:</strong> applying scenario modeling, dynamic linking and automated validation to a financial forecasting workbook.</p>
-                <p>Source: TCS Annual Reports FY18–FY25. A companion website showcasing this project is at saitcsproject.lovable.app.</p>
-              </div>}
             </div>
-          </article>
-          <article className="project-card reveal">
-            <div className="project-content">
-              <p className="kicker">TCS · Independent academic project · Power BI Desktop</p>
-              <h3>{powerBiProject.title}</h3>
-              <p className="project-intro">{powerBiProject.intro}</p>
-              <div className="project-facts">
-                {powerBiProject.facts.map(([label, detail]) => <p key={label}><strong>{label} — </strong>{detail}</p>)}
-              </div>
-              <div className="chips">{powerBiProject.skills.map(item => <span className="chip" key={item}>{item}</span>)}</div>
-              <div className="project-actions">
-                <Button variant="glass" asChild><a href={powerBiProject.downloadUrl} target="_blank" rel="noopener noreferrer">Download PBIP Source + Data <Download aria-hidden="true" /></a></Button>
-              </div>
-              <p className="project-intro">{powerBiProject.downloadNote}</p>
+          </div>
+        </section>
+        <section id="work" className="work section">
+          <div className="section-heading">
+            <p className="eyebrow">02 / SELECTED WORK</p>
+            <h2>
+              Project
+              <br />
+              <em>gallery.</em>
+            </h2>
+            <p>
+              Two independent academic projects.
+              <br />A closer look at how I work with financial data.
+            </p>
+          </div>
+          <div className="project-workspace">
+            <div className="project-tabs" aria-label="Choose project">
+              {["Excel forecasting model", "Power BI dashboard"].map((name, i) => (
+                <button aria-pressed={project === i} key={name} onClick={() => setProject(i)}>
+                  <span>0{i + 1}</span>
+                  {name}
+                  <ArrowUpRight size={18} />
+                </button>
+              ))}
             </div>
-          </article>
+            <article className="project-sheet" key={project}>
+              <div className="project-summary">
+                <p className="eyebrow">TCS / INDEPENDENT ACADEMIC PROJECT</p>
+                <h3>
+                  {project === 0 ? "Financial Analysis & Forecasting Model" : powerBiProject.title}
+                </h3>
+                <p>
+                  {project === 0
+                    ? "A six-sheet Excel model covering eight years of TCS actuals (FY2018–FY2025), with Base, Bull and Bear forecasts through FY2028."
+                    : powerBiProject.intro}
+                </p>
+                <div className="project-stat">
+                  <strong>{project === 0 ? "06" : "04"}</strong>
+                  <span>{project === 0 ? "connected Excel sheets" : "Power BI report pages"}</span>
+                </div>
+                <a
+                  className="button dark"
+                  href={project === 0 ? excelProjectDownloadUrl : powerBiProject.downloadUrl}
+                  download
+                >
+                  <Download size={17} />
+                  {project === 0 ? "Download Excel model" : "Download PBIP source"}
+                </a>
+                {project === 0 && (
+                  <a
+                    className="text-link"
+                    href="https://saitcsproject1.netlify.app/"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Explore project website <ArrowUpRight size={16} />
+                  </a>
+                )}
+              </div>
+              <div className="project-inside">
+                <p className="eyebrow">WHAT I WORKED ON</p>
+                {project === 0 ? (
+                  <>
+                    <p>
+                      Connecting historical financial statements to a linked, scenario-based
+                      forecast.
+                    </p>
+                    <details>
+                      <summary>
+                        Read project details <span>+</span>
+                      </summary>
+                      <ul>
+                        <li>
+                          Income statement, margins, EPS, CAGR and free cash flow analytics in INR
+                          Crores.
+                        </li>
+                        <li>
+                          Forecasts linked to an assumptions panel, with a custom growth-rate
+                          override.
+                        </li>
+                        <li>
+                          Net profit derived from EBITDA, EBIT and tax; free cash flow projected
+                          from profit, depreciation and capex.
+                        </li>
+                        <li>
+                          11 automated workbook validation checks, reported passing in the source
+                          portfolio.
+                        </li>
+                      </ul>
+                      <p>Source: TCS Annual Reports FY18–FY25.</p>
+                    </details>
+                  </>
+                ) : (
+                  <>
+                    {powerBiProject.facts.map(([label, text]) => (
+                      <details key={label}>
+                        <summary>
+                          {label}
+                          <span>+</span>
+                        </summary>
+                        <p>{text}</p>
+                      </details>
+                    ))}
+                    <p className="download-note">{powerBiProject.downloadNote}</p>
+                  </>
+                )}
+              </div>
+            </article>
+          </div>
         </section>
-        <section id="skills" className="section container-portfolio" aria-labelledby="skills-title">
-          <div className="section-head reveal"><p className="kicker">Tools &amp; foundations</p><h2 id="skills-title">Skills</h2></div>
-          <div className="skills-grid">{skillGroups.map((group, i) => <article className={`skill-card reveal reveal-d${(i % 4) + 1}`} key={group.title}><h3>{group.title}</h3><div className="chips">{group.items.map(item => <span className="chip" key={item}>{item}</span>)}</div><p>{group.detail}</p></article>)}</div>
-          <div className="learning reveal" id="learning"><div><h3>Currently Learning</h3><p>Building practical skills in SQL and Python as part of my transition into data analytics.</p></div><div className="chips"><span className="chip">SQL</span><span className="chip">Python</span></div></div>
+        <section id="toolkit" className="toolkit section">
+          <div className="section-heading">
+            <p className="eyebrow">03 / TOOLS & FOUNDATIONS</p>
+            <h2>
+              Skills in
+              <br />
+              <em>practice.</em>
+            </h2>
+          </div>
+          <div className="toolkit-layout">
+            <div className="skill-switch" aria-label="Select skill area">
+              {skillGroups.map((group, i) => (
+                <button aria-pressed={skill === i} onClick={() => setSkill(i)} key={group.title}>
+                  <span>0{i + 1}</span>
+                  {group.title}
+                  <ArrowUpRight />
+                </button>
+              ))}
+              <p className="learning-note">
+                <strong>Currently learning</strong>
+                <br />
+                SQL + Python
+                <br />
+                <span>Building practical skills for business reporting.</span>
+              </p>
+            </div>
+            <div className="skill-page" key={skill}>
+              <p className="eyebrow">EXPLORE THE TOOLKIT</p>
+              <h3>{skillGroups[skill]!.title}</h3>
+              <div className="skill-items">
+                {skillGroups[skill]!.items.map((item, i) => (
+                  <span style={{ animationDelay: `${i * 40}ms` }} key={item}>
+                    {item}
+                  </span>
+                ))}
+              </div>
+              <p>{skillGroups[skill]!.detail}</p>
+            </div>
+          </div>
         </section>
-        <section id="education" className="section container-portfolio" aria-labelledby="education-title">
-          <div className="section-head reveal"><p className="kicker">Academic foundation</p><h2 id="education-title">Education &amp; Training</h2></div>
-          <div className="education-list">{education.map((item, i) => <article className={`education-item reveal reveal-d${(i % 4) + 1}`} key={item.title}><div className="education-period">{item.period}</div><div><div className="degree-title"><h3>{item.title}</h3>{item.status && <span className="status">{item.status} <Check size={10} className="inline" aria-hidden="true" /></span>}</div><p>{item.institution}</p>{item.result && <p className="result">{item.result}</p>}{item.detail && <p>{item.detail}</p>}</div></article>)}</div>
-          <div id="certifications" className="credentials reveal"><p className="kicker">Continued development</p><h2>Certifications</h2><div className="cert-grid">{certifications.map((cert, i) => <article className={`cert-card reveal reveal-d${(i % 4) + 1}`} key={cert.title}><p className="cert-provider">{cert.provider}</p><h3>{cert.title}</h3>{cert.status && <span className="status">{cert.status}</span>}<ul>{cert.courses.map(([title, score]) => <li key={title}><span>{title}</span><b>{score}</b></li>)}</ul></article>)}</div></div>
+        <section id="journey" className="journey section">
+          <div className="section-heading">
+            <p className="eyebrow">04 / THE FOUNDATION</p>
+            <h2>
+              Education &amp;
+              <br />
+              <em>training.</em>
+            </h2>
+            <p>
+              I’m looking for an entry-level opportunity to apply my commerce background to
+              analysis, visualization and reporting.
+            </p>
+          </div>
+          <div className="journey-content">
+            <div className="timeline">
+              {education.map((item) => (
+                <article key={item.title}>
+                  <time>{item.period}</time>
+                  <h3>{item.title}</h3>
+                  <p>{item.institution}</p>
+                  {item.result && <strong>{item.result}</strong>}
+                  {item.status && <span className="education-status">{item.status}</span>}
+                  {item.detail && <p>{item.detail}</p>}
+                </article>
+              ))}
+            </div>
+            <div className="credentials">
+              <h3>Courses & certifications</h3>
+              {certifications.map((cert) => (
+                <details key={cert.title}>
+                  <summary>
+                    <span>
+                      <small>
+                        {cert.provider}
+                        {cert.status ? ` / ${cert.status}` : ""}
+                      </small>
+                      {cert.title}
+                    </span>
+                    <b>+</b>
+                  </summary>
+                  <ul>
+                    {cert.courses.map(([title, score]) => (
+                      <li key={title}>
+                        {title}
+                        <strong>{score}</strong>
+                      </li>
+                    ))}
+                  </ul>
+                </details>
+              ))}
+            </div>
+          </div>
         </section>
-        <section className="section container-portfolio" aria-labelledby="about-title">
-          <div className="about reveal" id="about"><p className="kicker">A little about me</p><h2 id="about-title">Commerce foundation. Analytical direction.</h2><p>I’m a B.Com graduate with a foundation in finance and accounting, and practical work in Excel, Power BI, financial analysis and dashboard reporting. My TCS financial forecasting model brings together financial statement analysis, scenario modeling and validation.</p><p>I’m looking to develop further in data analytics, applying my commerce background to clear analysis, visualization and reporting in an entry-level role.</p></div>
-          <h3 className="languages-title reveal" id="languages">Languages</h3><div className="languages reveal">{languages.map(([name, level], i) => <div className={`language reveal reveal-d${(i % 4) + 1}`} key={name}><strong>{name}</strong><span>{level}</span></div>)}</div>
+        <section id="contact" className="contact section">
+          <div>
+            <p className="eyebrow">05 / OPEN TO ENTRY-LEVEL OPPORTUNITIES</p>
+            <h2>
+              Have an
+              <br />
+              <em>opportunity?</em>
+            </h2>
+            <p className="contact-intro">I’d love to hear about it.</p>
+            <div className="contact-art" aria-hidden="true">
+              <i />
+              <i />
+              <i />
+              <span className="contact-wave">
+                <b />
+                <b />
+                <b />
+                <b />
+                <b />
+              </span>
+            </div>
+          </div>
+          <div className="contact-content">
+            <p>
+              Business Reporting · Business Analytics · Finance Analytics · MIS / Reporting ·
+              Financial Analysis · Finance / Accounting
+            </p>
+            <a href="mailto:saiprasathdp@gmail.com">
+              <Mail size={20} />
+              <span>saiprasathdp@gmail.com</span>
+              <ArrowUpRight />
+            </a>
+            <a href="tel:+919380721853">
+              <Phone size={20} />
+              <span>+91 93807 21853</span>
+              <ArrowUpRight />
+            </a>
+            <a href={resumeViewUrl} target="_blank" rel="noreferrer">
+              <Download size={20} />
+              <span>View current resume</span>
+              <ArrowUpRight />
+            </a>
+            <a href={linkedInUrl} target="_blank" rel="noopener noreferrer">
+              <span>LinkedIn · Sai Prasath D P</span>
+              <ArrowUpRight aria-hidden="true" />
+            </a>
+            <p className="contact-location">Based in Bengaluru, India.</p>
+          </div>
         </section>
-        <section id="contact" className="section contact container-portfolio" aria-labelledby="contact-title"><p className="kicker reveal">Open to entry-level opportunities</p><h2 id="contact-title" className="reveal reveal-d1">Get in touch</h2><div className="contact-grid"><a className="contact-link reveal reveal-d1" href="mailto:saiprasathdp@gmail.com"><Mail aria-hidden="true" /><div><span>Email</span><strong>saiprasathdp@gmail.com</strong></div><ArrowUpRight className="external" aria-hidden="true" /></a><a className="contact-link reveal reveal-d2" href="tel:+919380721853"><Phone aria-hidden="true" /><div><span>Phone</span><strong>+91 93807 21853</strong></div><ArrowUpRight className="external" aria-hidden="true" /></a><a className="contact-link reveal reveal-d3" href={resumeDownloadUrl}><Download aria-hidden="true" /><div><span>Resume</span><strong>Download Resume</strong></div><ArrowUpRight className="external" aria-hidden="true" /></a><a className="contact-link reveal reveal-d4" href="https://saiprasathportfolio.netlify.app/" target="_blank" rel="noopener noreferrer"><ArrowUpRight aria-hidden="true" /><div><span>Portfolio Website</span><strong>saiprasathportfolio.netlify.app</strong></div><ArrowUpRight className="external" aria-hidden="true" /></a><div className="contact-link reveal reveal-d5"><MapPin aria-hidden="true" /><div><span>Location</span><strong>Bengaluru, India</strong></div></div></div><p className="target-roles reveal">Seeking entry-level opportunities in Data Analytics, Business Analytics, Finance Analytics, MIS / Reporting, Financial Analysis and Finance / Accounting.</p></section>
       </main>
-      <footer className="footer container-portfolio"><span>© 2026 Sai Prasath D P</span><span>Finance &amp; Business Analytics · Bengaluru, India</span></footer>
+      <footer>
+        <div className="footer-signature">
+          Sai Prasath D P<span>Bengaluru, India</span>
+        </div>
+        <a className="footer-top" href="#top">
+          Back to top <ArrowUpRight size={18} />
+        </a>
+        <div className="footer-bottom">
+          <span>© 2026 Sai Prasath D P</span>
+          <span>Thanks for stopping by.</span>
+        </div>
+      </footer>
     </div>
   );
 }
-
