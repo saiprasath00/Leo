@@ -76,7 +76,7 @@ export const certifications = [
   },
   {
     provider: "Microsoft · Coursera",
-    title: "Microsoft Power BI coursework",
+    title: "Power BI Data Analyst",
     status: "In Progress",
     courses: [
       ["Preparing Data with Excel", "91%"],
