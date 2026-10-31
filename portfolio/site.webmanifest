@@ -1,0 +1,18 @@
+{
+  "name": "Sai Prasath D P — Excel, Power BI & Financial Models",
+  "short_name": "Sai Prasath",
+  "description": "B.Com graduate in Bengaluru building Excel financial models and Power BI reports.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0B0B0C",
+  "theme_color": "#2B3BFF",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

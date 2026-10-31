@@ -1,0 +1,6 @@
+[build]
+  command = "npm run build --prefix portfolio"
+  publish = "portfolio/dist"
+
+[build.environment]
+  VITE_BASE = "/"

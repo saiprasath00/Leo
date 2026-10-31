@@ -1,0 +1,290 @@
+@import "./base.css";
+@import "./hero.css";
+@import "./about.css";
+@import "./work-excel.css";
+@import "./work-bi.css";
+@import "./toolkit.css";
+@import "./journey.css";
+@import "./contact.css";
+@import "./footer.css";
+
+/* ---------------------------------------------------------
+   Motion setup
+   --------------------------------------------------------- */
+
+html {
+  scrollbar-gutter: stable;
+}
+
+main:focus,
+section:focus,
+[tabindex="-1"]:focus {
+  outline: none;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.motion-ready [data-reveal] {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 800ms var(--ease), transform 800ms var(--ease);
+}
+
+.motion-ready [data-reveal].is-revealed {
+  opacity: 1;
+  transform: none;
+}
+
+.motion-ready .section-title .line-mask > span {
+  transform: translateY(112%);
+  transition: transform 950ms var(--ease);
+}
+
+.motion-ready .section-head.is-revealed .section-title .line-mask > span,
+.motion-ready .contact-head.is-revealed .section-title .line-mask > span {
+  transform: translateY(0);
+}
+
+.motion-ready .section-title .line-mask:nth-child(2) > span {
+  transition-delay: 70ms;
+}
+
+.motion-ready .section-title .line-mask:nth-child(3) > span {
+  transition-delay: 140ms;
+}
+
+.motion-ready .chart-line--actual {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+.motion-ready .chart-wrap.is-inview .chart-line--actual {
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 1800ms var(--ease) 180ms;
+}
+
+.reveal-fallback [data-reveal],
+.reveal-fallback .section-title .line-mask > span {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* ---------------------------------------------------------
+   Small motion details
+   --------------------------------------------------------- */
+
+.hero-scroll i::after {
+  animation: scroll-drop 2s var(--ease) infinite;
+}
+
+@keyframes scroll-drop {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  70% {
+    transform: translateY(34px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(34px);
+    opacity: 0;
+  }
+}
+
+.report-panel.is-active .trend-bars i {
+  animation: bar-grow 650ms var(--ease) both;
+}
+
+.report-panel.is-active .trend-bars i:nth-child(2) {
+  animation-delay: 40ms;
+}
+
+.report-panel.is-active .trend-bars i:nth-child(3) {
+  animation-delay: 80ms;
+}
+
+.report-panel.is-active .trend-bars i:nth-child(4) {
+  animation-delay: 120ms;
+}
+
+.report-panel.is-active .trend-bars i:nth-child(5) {
+  animation-delay: 160ms;
+}
+
+.report-panel.is-active .trend-bars i:nth-child(6) {
+  animation-delay: 200ms;
+}
+
+.report-panel.is-active .trend-bars i:nth-child(7) {
+  animation-delay: 240ms;
+}
+
+.report-panel.is-active .trend-bars i:nth-child(8) {
+  animation-delay: 280ms;
+}
+
+@keyframes bar-grow {
+  from {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+  to {
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+}
+
+.report-panel.is-active .kpi svg path {
+  animation: kpi-draw 900ms var(--ease) both;
+}
+
+@keyframes kpi-draw {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------------------------------------------------------
+   Responsive shell
+   --------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .nav-links {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: inline-flex;
+  }
+
+  .header-inner {
+    grid-template-columns: 1fr auto;
+  }
+
+  .section-head {
+    grid-template-columns: 1fr;
+    align-items: start;
+    gap: 16px;
+  }
+
+  .section-head .section-note {
+    grid-column: 1;
+    max-width: 46ch;
+    margin-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+@media (max-width: 560px) {
+  :root {
+    --header-h: 64px;
+    --gutter: 18px;
+  }
+
+  .section {
+    padding: 76px 0;
+  }
+
+  .wordmark-text {
+    display: none;
+  }
+
+  .header-contact {
+    min-height: 38px;
+    padding: 0 10px;
+    font-size: 8px;
+  }
+
+  .menu-toggle {
+    padding: 0 9px;
+    font-size: 8px;
+  }
+
+  .section-head {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 38px;
+  }
+
+  .section-head .section-note {
+    grid-column: 1;
+    margin-top: 0;
+  }
+
+  .section-title {
+    font-size: clamp(2.7rem, 10.5vw, 4.2rem);
+    line-height: 0.84;
+  }
+
+  .contact-head .section-title {
+    font-size: clamp(2.7rem, 12.5vw, 4.2rem);
+  }
+
+  .ticker {
+    height: 48px;
+  }
+
+  .ticker-pause {
+    width: 48px;
+  }
+}
+
+/* ---------------------------------------------------------
+   Reduced motion
+   --------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .ticker-track {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .hero-scroll i::after {
+    animation: none !important;
+    opacity: 1;
+    transform: none;
+  }
+
+  .hero-availability i {
+    animation: none !important;
+    box-shadow: none;
+  }
+
+  .chart-line--actual {
+    stroke-dashoffset: 0 !important;
+  }
+}

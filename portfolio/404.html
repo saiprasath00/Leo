@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="en-IN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 — Series not found | Sai Prasath D P</title>
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#0B0B0C" />
+    <link rel="icon" href="/portfolio/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href="/portfolio/fonts/tanker-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/portfolio/fonts/switzer-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/portfolio/fonts/dmmono-400.woff2" as="font" type="font/woff2" crossorigin />
+    <style>
+      @font-face {
+        font-family: "Tanker";
+        src: url("/fonts/tanker-400.woff2") format("woff2");
+        font-weight: 400;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: "Switzer";
+        src: url("/fonts/switzer-400.woff2") format("woff2");
+        font-weight: 400;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: "Switzer";
+        src: url("/fonts/switzer-500.woff2") format("woff2");
+        font-weight: 500;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: "DM Mono";
+        src: url("/fonts/dmmono-400.woff2") format("woff2");
+        font-weight: 400;
+        font-display: swap;
+      }
+
+      :root {
+        --ink: #0b0b0c;
+        --ink-2: #151518;
+        --paper: #f4f1e8;
+        --cobalt: #2b3bff;
+        --acid: #d8ff3e;
+        --tang: #ff5c35;
+        --display: "Tanker", "Arial Black", Impact, sans-serif;
+        --sans: "Switzer", "Helvetica Neue", Arial, sans-serif;
+        --mono: "DM Mono", Consolas, monospace;
+        --ease: cubic-bezier(0.19, 1, 0.22, 1);
+        --gutter: clamp(20px, 4vw, 56px);
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        background: var(--ink);
+        -webkit-text-size-adjust: 100%;
+      }
+
+      body {
+        min-height: 100svh;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        overflow-x: hidden;
+        background: var(--ink);
+        color: var(--paper);
+        font-family: var(--sans);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image: linear-gradient(to right, rgba(216, 255, 62, 0.06) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(216, 255, 62, 0.06) 1px, transparent 1px);
+        background-size: 64px 64px;
+        -webkit-mask-image: linear-gradient(to bottom, #000, transparent 78%);
+        mask-image: linear-gradient(to bottom, #000, transparent 78%);
+        pointer-events: none;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .wrap {
+        width: min(100% - (2 * var(--gutter)), 1400px);
+        margin-inline: auto;
+      }
+
+      header {
+        position: relative;
+        z-index: 1;
+        border-bottom: 1px solid rgba(244, 241, 232, 0.18);
+      }
+
+      .header-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        min-height: 72px;
+      }
+
+      .wordmark {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+      }
+
+      .wordmark-mark {
+        display: grid;
+        place-items: center;
+        width: 30px;
+        height: 30px;
+        background: var(--acid);
+        color: var(--ink);
+        font-family: var(--display);
+        font-size: 14px;
+        line-height: 1;
+      }
+
+      .wordmark-text {
+        color: rgba(244, 241, 232, 0.72);
+        font-family: var(--mono);
+        font-size: 9px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .header-meta {
+        color: rgba(244, 241, 232, 0.44);
+        font-family: var(--mono);
+        font-size: 8px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      main {
+        position: relative;
+        z-index: 1;
+        flex: 1;
+        display: grid;
+        grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.75fr);
+        gap: clamp(40px, 8vw, 130px);
+        align-items: center;
+        padding: clamp(52px, 8vh, 96px) 0;
+      }
+
+      .error-code {
+        margin-bottom: clamp(18px, 3vw, 32px);
+        font-family: var(--display);
+        font-size: clamp(7rem, 23vw, 22rem);
+        font-weight: 400;
+        line-height: 0.68;
+        letter-spacing: -0.06em;
+      }
+
+      .error-code span {
+        display: inline-block;
+      }
+
+      .error-code span:nth-child(1) {
+        color: var(--acid);
+      }
+
+      .error-code span:nth-child(2) {
+        color: transparent;
+        -webkit-text-stroke: 1px rgba(244, 241, 232, 0.5);
+      }
+
+      .error-code span:nth-child(3) {
+        color: var(--cobalt);
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 14px;
+        color: var(--tang);
+        font-family: var(--mono);
+        font-size: 8px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .eyebrow i {
+        width: 7px;
+        height: 7px;
+        background: var(--tang);
+        border-radius: 50%;
+      }
+
+      h1 {
+        max-width: 13ch;
+        margin: 0;
+        font-family: var(--display);
+        font-size: clamp(2.6rem, 5.4vw, 5.6rem);
+        font-weight: 400;
+        line-height: 0.86;
+        letter-spacing: -0.035em;
+        text-transform: uppercase;
+        text-wrap: balance;
+      }
+
+      .error-copy {
+        max-width: 48ch;
+        margin-top: 18px;
+        color: rgba(244, 241, 232, 0.68);
+        font-size: clamp(14px, 1.2vw, 17px);
+        line-height: 1.55;
+        text-wrap: pretty;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 28px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 22px;
+        min-height: 52px;
+        padding: 0 18px;
+        border: 1px solid currentColor;
+        font-family: var(--mono);
+        font-size: 9px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition: background 200ms var(--ease), color 200ms var(--ease),
+          border-color 200ms var(--ease);
+      }
+
+      .btn--acid {
+        border-color: var(--acid);
+        background: var(--acid);
+        color: var(--ink);
+      }
+
+      .btn--acid:hover {
+        border-color: var(--paper);
+        background: var(--paper);
+      }
+
+      .btn--ghost {
+        border-color: rgba(244, 241, 232, 0.42);
+        color: var(--paper);
+      }
+
+      .btn--ghost:hover {
+        border-color: var(--paper);
+        background: var(--paper);
+        color: var(--ink);
+      }
+
+      .btn span {
+        font-family: var(--sans);
+        font-size: 15px;
+        line-height: 1;
+      }
+
+      .chart-card {
+        position: relative;
+        padding: clamp(18px, 2.4vw, 28px);
+        border: 1px solid rgba(244, 241, 232, 0.28);
+        background: var(--ink-2);
+        box-shadow: 10px 10px 0 var(--cobalt);
+      }
+
+      .chart-card::after {
+        content: "";
+        position: absolute;
+        inset: 8px;
+        border: 1px solid rgba(216, 255, 62, 0.08);
+        pointer-events: none;
+      }
+
+      .chart-head {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 18px;
+        color: rgba(244, 241, 232, 0.44);
+        font-family: var(--mono);
+        font-size: 8px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .chart-head strong {
+        color: var(--tang);
+        font-weight: 400;
+      }
+
+      .chart {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        height: auto;
+        overflow: visible;
+      }
+
+      .grid-line {
+        stroke: rgba(244, 241, 232, 0.11);
+        stroke-width: 1;
+      }
+
+      .broken-line {
+        fill: none;
+        stroke: var(--acid);
+        stroke-width: 2.5;
+        stroke-linecap: round;
+        stroke-dasharray: 260;
+        stroke-dashoffset: 260;
+        animation: draw 1.8s var(--ease) 0.15s forwards;
+      }
+
+      .broken-line-gap {
+        fill: none;
+        stroke: var(--tang);
+        stroke-width: 2.5;
+        stroke-linecap: round;
+        stroke-dasharray: 5 8;
+      }
+
+      .broken-dot {
+        fill: var(--tang);
+        animation: ping 2.4s var(--ease) infinite;
+      }
+
+      @keyframes draw {
+        to {
+          stroke-dashoffset: 0;
+        }
+      }
+
+      @keyframes ping {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.35;
+        }
+      }
+
+      .chart-note {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-top: 12px;
+        padding-top: 12px;
+        border-top: 1px solid rgba(244, 241, 232, 0.14);
+        color: rgba(244, 241, 232, 0.4);
+        font-family: var(--mono);
+        font-size: 7px;
+        line-height: 1.5;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+
+      .chart-note strong {
+        color: var(--acid);
+        font-weight: 400;
+      }
+
+      footer {
+        position: relative;
+        z-index: 1;
+        border-top: 1px solid rgba(244, 241, 232, 0.18);
+      }
+
+      .footer-inner {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px 24px;
+        padding: 18px 0;
+        color: rgba(244, 241, 232, 0.38);
+        font-family: var(--mono);
+        font-size: 7px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .footer-inner a {
+        color: var(--acid);
+        text-decoration: none;
+      }
+
+      .footer-inner a:hover {
+        color: var(--paper);
+      }
+
+      :focus-visible {
+        outline: 2px solid var(--acid);
+        outline-offset: 4px;
+      }
+
+      @media (max-width: 900px) {
+        main {
+          grid-template-columns: 1fr;
+          gap: 44px;
+          align-items: start;
+          padding: 52px 0 64px;
+        }
+
+        .error-code {
+          font-size: clamp(7rem, 34vw, 15rem);
+          margin-bottom: 20px;
+        }
+
+        h1 {
+          max-width: 16ch;
+        }
+
+        .chart-card {
+          max-width: 540px;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .header-inner {
+          min-height: 64px;
+        }
+
+        .header-meta {
+          display: none;
+        }
+
+        .error-code {
+          font-size: clamp(6.5rem, 37vw, 10rem);
+        }
+
+        .actions {
+          display: grid;
+        }
+
+        .btn {
+          width: 100%;
+        }
+
+        .chart-card {
+          box-shadow: 6px 6px 0 var(--cobalt);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .broken-line {
+          animation: none;
+          stroke-dashoffset: 0;
+        }
+
+        .broken-dot {
+          animation: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="wrap header-inner">
+        <a class="wordmark" href="/portfolio/" aria-label="Sai Prasath D P, back to portfolio">
+          <span class="wordmark-mark" aria-hidden="true">SP</span>
+          <span class="wordmark-text">Sai Prasath D P</span>
+        </a>
+        <span class="header-meta">Portfolio / Error state</span>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <div>
+        <p class="eyebrow"><i aria-hidden="true"></i> 404 / Route not found</p>
+        <div class="error-code" aria-hidden="true">
+          <span>4</span><span>0</span><span>4</span>
+        </div>
+        <h1>This page isn’t in the model.</h1>
+        <p class="error-copy">
+          The URL you followed doesn’t exist, or it moved. Nothing is broken beyond this
+          route — the portfolio is still where you left it.
+        </p>
+        <div class="actions">
+          <a class="btn btn--acid" href="/portfolio/">
+            Back to the portfolio
+            <span aria-hidden="true">↗</span>
+          </a>
+          <a class="btn btn--ghost" href="mailto:saiprasathdp@gmail.com">
+            Email me
+            <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+
+      <aside class="chart-card" aria-label="A chart with a missing series">
+        <div class="chart-head">
+          <span>TCS / Scenario series</span>
+          <strong>Series not found</strong>
+        </div>
+        <svg class="chart" viewBox="0 0 520 300" role="img" aria-label="A rising chart line that breaks at a missing data point">
+          <g aria-hidden="true">
+            <line class="grid-line" x1="24" y1="260" x2="496" y2="260" />
+            <line class="grid-line" x1="24" y1="200" x2="496" y2="200" />
+            <line class="grid-line" x1="24" y1="140" x2="496" y2="140" />
+            <line class="grid-line" x1="24" y1="80" x2="496" y2="80" />
+            <line class="grid-line" x1="24" y1="20" x2="496" y2="20" />
+          </g>
+          <path
+            class="broken-line"
+            pathLength="260"
+            d="M24,248 C70,246 92,222 138,218 C184,214 206,186 252,180 C298,174 318,140 360,134"
+          />
+          <path
+            class="broken-line-gap"
+            d="M386,122 C412,112 436,104 496,92"
+          />
+          <circle class="broken-dot" cx="360" cy="134" r="5" />
+          <circle class="broken-dot" cx="386" cy="122" r="4" style="fill: var(--acid); animation-delay: 0.4s" />
+          <g aria-hidden="true" fill="rgba(244, 241, 232, 0.36)" font-family="DM Mono, monospace" font-size="9">
+            <text x="24" y="286">FY22</text>
+            <text x="180" y="286">FY24</text>
+            <text x="330" y="286">FY25</text>
+            <text x="460" y="286">FY26</text>
+          </g>
+        </svg>
+        <p class="chart-note">
+          <span>Error / 404</span>
+          <span><strong>Gap detected</strong> · route missing</span>
+        </p>
+      </aside>
+    </main>
+
+    <footer>
+      <div class="wrap footer-inner">
+        <span>© 2026 Sai Prasath D P · Bengaluru, India</span>
+        <span>B.Com · Excel · Power BI · <a href="mailto:saiprasathdp@gmail.com">saiprasathdp@gmail.com</a></span>
+      </div>
+    </footer>
+  </body>
+</html>
+

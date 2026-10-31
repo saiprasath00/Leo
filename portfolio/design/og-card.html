@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en-IN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OG card</title>
+    <style>
+      @font-face {
+        font-family: "Tanker";
+        src: url("/fonts/tanker-400.woff2") format("woff2");
+        font-weight: 400;
+        font-display: block;
+      }
+      @font-face {
+        font-family: "Switzer";
+        src: url("/fonts/switzer-400.woff2") format("woff2");
+        font-weight: 400;
+        font-display: block;
+      }
+      @font-face {
+        font-family: "Switzer";
+        src: url("/fonts/switzer-500.woff2") format("woff2");
+        font-weight: 500;
+        font-display: block;
+      }
+      @font-face {
+        font-family: "DM Mono";
+        src: url("/fonts/dmmono-400.woff2") format("woff2");
+        font-weight: 400;
+        font-display: block;
+      }
+
+      :root {
+        --ink: #0b0b0c;
+        --paper: #f4f1e8;
+        --cobalt: #2b3bff;
+        --acid: #d8ff3e;
+        --display: "Tanker", "Arial Black", Impact, sans-serif;
+        --sans: "Switzer", "Helvetica Neue", Arial, sans-serif;
+        --mono: "DM Mono", Consolas, monospace;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        width: 1200px;
+        height: 630px;
+        margin: 0;
+        overflow: hidden;
+      }
+
+      body {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        background: var(--cobalt);
+        color: var(--paper);
+        font-family: var(--sans);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .grid {
+        position: absolute;
+        inset: 0;
+        background-image: linear-gradient(to right, rgba(216, 255, 62, 0.14) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(216, 255, 62, 0.14) 1px, transparent 1px);
+        background-size: 72px 72px;
+        opacity: 0.55;
+        -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 58%, transparent 100%);
+        mask-image: linear-gradient(to bottom, #000 0%, #000 58%, transparent 100%);
+      }
+
+      .pulse {
+        position: absolute;
+        left: -2%;
+        bottom: 54px;
+        width: 104%;
+        height: 300px;
+        opacity: 0.42;
+      }
+
+      .pulse path {
+        fill: none;
+        stroke: var(--acid);
+        stroke-width: 1.5;
+        vector-effect: non-scaling-stroke;
+      }
+
+      header,
+      main,
+      footer {
+        position: relative;
+        z-index: 1;
+      }
+
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        margin: 0 56px;
+        padding: 26px 0 18px;
+        border-bottom: 1px solid rgba(244, 241, 232, 0.28);
+        color: rgba(244, 241, 232, 0.7);
+        font-family: var(--mono);
+        font-size: 12px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      header span:last-child {
+        color: var(--acid);
+      }
+
+      main {
+        flex: 1;
+        padding: 34px 56px 24px;
+      }
+
+      h1 {
+        margin: 0;
+        font-family: var(--display);
+        font-size: 164px;
+        font-weight: 400;
+        line-height: 0.78;
+        letter-spacing: -0.045em;
+        text-transform: uppercase;
+      }
+
+      .intro {
+        max-width: 760px;
+        margin: 22px 0 0;
+        color: rgba(244, 241, 232, 0.9);
+        font-size: 25px;
+        line-height: 1.42;
+        letter-spacing: -0.01em;
+      }
+
+      .facts {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px 28px;
+        margin-top: 20px;
+        color: rgba(244, 241, 232, 0.62);
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .facts span {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .facts span::before {
+        content: "";
+        width: 5px;
+        height: 5px;
+        background: var(--acid);
+      }
+
+      footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        min-height: 54px;
+        padding: 0 56px;
+        background: var(--acid);
+        color: var(--ink);
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      footer span:last-child {
+        font-weight: 500;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="grid" aria-hidden="true"></div>
+    <svg class="pulse" viewBox="0 0 1440 300" preserveAspectRatio="none" aria-hidden="true">
+      <path
+        d="M0,250 C120,250 140,214 240,216 C340,218 350,180 450,186 C550,192 560,150 660,156 C760,162 770,118 870,126 C970,134 980,92 1080,100 C1180,108 1190,72 1290,78 C1390,84 1400,56 1440,60"
+      />
+    </svg>
+
+    <header>
+      <span>Sai Prasath D P / Portfolio 2026</span>
+      <span>Bengaluru, India</span>
+    </header>
+
+    <main>
+      <h1>SAI<br />PRASATH D P</h1>
+      <p class="intro">
+        B.Com graduate building Excel models and Power BI reports that make financial statements
+        explain themselves.
+      </p>
+      <div class="facts">
+        <span>B.Com 2026 · CGPA 9.05</span>
+        <span>Excel · Power BI · SQL</span>
+        <span>Open to entry-level roles</span>
+      </div>
+    </main>
+
+    <footer>
+      <span>Excel models / Power BI / Financial analysis</span>
+      <span>saiprasathdp@gmail.com</span>
+    </footer>
+  </body>
+</html>
